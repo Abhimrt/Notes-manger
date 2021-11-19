@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes Maker</title>
+    <!-- css  -->
+    <link rel="stylesheet" href="style.css">
     <!-- font links -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,34 +15,7 @@
     <!-- Bootstrap links -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <style>
-        * {
-            font-family: 'Architects Daughter', cursive;
-            color: white;
-        }
-
-        .cb {
-            color: black;
-        }
-
-        .cb1 {
-            color: rgba(0, 0, 0, 0.5);
-        }
-
-        .card {
-            position: static !important;
-        }
-
-        @media (max-width:800px) {
-            .navbar {
-                border-radius: 0 0 5px 5px;
-            }
-
-            .name {
-                width: 100%;
-            }
-        }
-    </style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 
 <body class="bg-dark">
@@ -53,28 +28,85 @@
             </div>
             <div class="d-flex w-100">
                 <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search">
-                <!-- <button class="btn btn-outline-success" onclick="searching()">Search</button> -->
             </div>
 
     </nav>
     <!-- main container -->
+    <div class="container ">
+        <div class="row justify-content-between">
+            <div class="card text-center col-md-7 my-5"  id="divTextArea">
+                <div class="card-header cb">
+                    Notes
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title cb">Enter Data of your notes here</h5>
+                    <textarea class="form-control " id="txtArea" placeholder="Enter here!"
+                        style="height: 200px;font-size: 20px;"></textarea>
+                    <button id="addbtn" class="btn  btn-info  my-3">Add Note</button>
+                </div>
+            </div>
+            <div class="col-md-4 my-5 ">
+                <ul class="nav nav-tabs" style="height: 10%;">
+                    <li class="nav-item">
+                      <div class="nav-link active" >Important!</div>
+                    </li>
+                </ul>
+                <div class="important-section my-3">
+                    <div class="noteCard my-2 mx-2 card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title cb">Note ${index + 1}</h5>
+                            <p class="card-text cb1">${e}</p>
+                            <button id="${index}"onclick="deletecard(this.id)" class="btn btn-danger">Delete Note</button>
+                            <span class="impMsg">Important!</span>
+                            <i class="bi bi-star imp1"></i>
+                        </div>
+                    </div>
+                    <div class="noteCard my-2 mx-2 card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title cb">Note ${index + 1}</h5>
+                            <p class="card-text cb1">${e}</p>
+                            <button id="${index}"onclick="deletecard(this.id)" class="btn btn-danger">Delete Note</button>
+                            <span class="impMsg">Important!</span>
+                            <i class="bi bi-star imp1"></i>
+                        </div>
+                    </div>
+                    <div class="noteCard my-2 mx-2 card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title cb">Note ${index + 1}</h5>
+                            <p class="card-text cb1">${e}</p>
+                            <button id="${index}"onclick="deletecard(this.id)" class="btn btn-danger">Delete Note</button>
+                            <span class="impMsg">Important!</span>
+                            <i class="bi bi-star imp1"></i>
+                        </div>
+                    </div>
+                    <div class="noteCard my-2 mx-2 card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title cb">Note ${index + 1}</h5>
+                            <p class="card-text cb1">${e}</p>
+                            <button id="${index}"onclick="deletecard(this.id)" class="btn btn-danger">Delete Note</button>
+                            <span class="impMsg">Important!</span>
+                            <i class="bi bi-star imp1"></i>
+                        </div>
+                    </div>
+                    <div class="noteCard my-2 mx-2 card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title cb">Note ${index + 1}</h5>
+                            <p class="card-text cb1">${e}</p>
+                            <button id="${index}"onclick="deletecard(this.id)" class="btn btn-danger">Delete Note</button>
+                            <span class="impMsg">Important!</span>
+                            <i class="bi bi-star imp1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <div class="card text-center  my-5" style="display: block;" id="divTextArea">
-            <div class="card-header cb">
-                Notes
-            </div>
-            <div class="card-body">
-                <h5 class="card-title cb">Enter Data of your notes here</h5>
-                <textarea class="form-control " id="txtArea" placeholder="Enter here!"
-                    style="height: 200px;font-size: 20px;"></textarea>
-                <button id="addbtn" class="btn  btn-info  my-3">Add Note</button>
-            </div>
-        </div>
         <hr>
-        <h1 style="text-align: center;">Notes!!</h1>
-        <hr>
-        <div id="write" class="row container-fluid">
-        </div>
+    <h1 style="text-align: center;">Notes!!</h1>
+    <hr>
+    <div id="write" class="row container-fluid">
+    </div>
     </div>
     <!-- bootstrap links -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

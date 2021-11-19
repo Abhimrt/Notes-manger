@@ -36,6 +36,8 @@ function shownotes() {
                     <h5 class="card-title cb">Note ${index + 1}</h5>
                     <p class="card-text cb1">${e}</p>
                     <button id="${index}"onclick="deletecard(this.id)" class="btn btn-danger">Delete Note</button>
+                    <span class="impMsg">Important!</span>
+                    <i class="bi bi-star imp1"></i>
                 </div>
             </div>
         `
@@ -49,6 +51,7 @@ function deletecard(index) {
     shownotes();
 }
 
+// for searching any card 
 let search = document.getElementById('search');
 search.addEventListener('input', () => {
     document.querySelector('#divTextArea').style.display = 'none';
@@ -63,5 +66,26 @@ search.addEventListener('input', () => {
         }
         if (search.value == "")
             document.querySelector('#divTextArea').style.display = 'block';
+    })
+});
+
+// for important 
+let data = document.querySelectorAll(".noteCard");
+data.forEach((e)=>{
+    let halfStar=e.getElementsByTagName("i")[0];
+    let impMsg = e.getElementsByTagName("span")[0];
+    halfStar.addEventListener("mouseenter",()=>{
+        impMsg.style.display="block";
+    })
+    halfStar.addEventListener("mouseout",()=>{
+        impMsg.style.display="none";
+    })
+    halfStar.addEventListener("click",()=>{
+        if(halfStar.classList[1]=="bi-star"){
+            halfStar.className='bi bi-star-fill imp1';
+        }
+        else if(halfStar.classList[1]=="bi-star-fill"){
+            halfStar.className='bi bi-star imp1';
+        }
     })
 });
