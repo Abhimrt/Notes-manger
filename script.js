@@ -32,9 +32,14 @@ function shownotes() {
                 <div class="card-body">
                     <h5 class="card-title cb">Note ${index + 1}</h5>
                     <p class="card-text cb1">${e}</p>
-                    <button id="${index}"onclick="deleteNote(this.id)" class="btn btn-danger">Delete Note</button>
+                    <button id="${index}"onclick="deletecard(this.id)" class="btn btn-danger">Delete Note</button>
                 </div>
             </div>
         `
     });
+}
+ function deletecard(index){
+     notesarr.splice(index,index+1);
+     localStorage.setItem('material',JSON.stringify(notesarr));
+     shownotes();
 }
