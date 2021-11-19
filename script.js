@@ -36,6 +36,7 @@ function shownotes() {
             </div>
         `
     });
+    
 }
 function deletecard(index) {
     notesarr.splice(index, index + 1);
@@ -44,17 +45,19 @@ function deletecard(index) {
 }
 
 let search =document.getElementById('search');
-search.addEventListener('input',searching());
-function searching(){
+search.addEventListener('input',()=>{
+    document.querySelector('#divTextArea').style.display='none';
     let data = document.querySelectorAll(".noteCard");
     data.forEach((e)=>{
         let element=e.getElementsByTagName('p')[0].innerText;
-            if(element.includes(search.value.toLowerCase())){
-                e.style.display="block"
-            }
-            else
-            {
-                e.style.display="none"
-            }
+        if(element.includes(search.value.toLowerCase())){
+            e.style.display="block"
+        }
+        else
+        {
+            e.style.display="none";
+        }
+        if(search.value=="")
+        document.querySelector('#divTextArea').style.display='block';
     })
-}
+});
