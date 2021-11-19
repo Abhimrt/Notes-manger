@@ -1,5 +1,7 @@
-let addbtn = document.getElementById("addbtn")
 shownotes();
+
+// add element to local storage 
+let addbtn = document.getElementById("addbtn")
 addbtn.addEventListener("click", () => {
     let notes = localStorage.getItem("material")
     let txar = document.getElementById("txtArea");
@@ -15,6 +17,8 @@ addbtn.addEventListener("click", () => {
     txar.value = '';
     shownotes();
 })
+
+// display the cards on DOM 
 function shownotes() {
     let writedown = document.getElementById("write");
     writedown.innerHTML = "";
@@ -36,28 +40,28 @@ function shownotes() {
             </div>
         `
     });
-    
 }
+
+// this will delete the card 
 function deletecard(index) {
     notesarr.splice(index, index + 1);
     localStorage.setItem('material', JSON.stringify(notesarr));
     shownotes();
 }
 
-let search =document.getElementById('search');
-search.addEventListener('input',()=>{
-    document.querySelector('#divTextArea').style.display='none';
+let search = document.getElementById('search');
+search.addEventListener('input', () => {
+    document.querySelector('#divTextArea').style.display = 'none';
     let data = document.querySelectorAll(".noteCard");
-    data.forEach((e)=>{
-        let element=e.getElementsByTagName('p')[0].innerText;
-        if(element.includes(search.value.toLowerCase())){
-            e.style.display="block"
+    data.forEach((e) => {
+        let element = e.getElementsByTagName('p')[0].innerText.toLowerCase();
+        if (element.includes(search.value.toLowerCase())) {
+            e.style.display = "block"
         }
-        else
-        {
-            e.style.display="none";
+        else {
+            e.style.display = "none";
         }
-        if(search.value=="")
-        document.querySelector('#divTextArea').style.display='block';
+        if (search.value == "")
+            document.querySelector('#divTextArea').style.display = 'block';
     })
 });
