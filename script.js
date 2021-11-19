@@ -44,7 +44,8 @@ function deletecard(index) {
 }
 
 let search =document.getElementById('search');
-search.addEventListener('input',()=>{
+search.addEventListener('input',searching());
+function searching(){
     let data = document.querySelectorAll(".noteCard");
     data.forEach((e)=>{
         let element=e.getElementsByTagName('p')[0].innerText;
@@ -56,4 +57,4 @@ search.addEventListener('input',()=>{
                 e.style.display="none"
             }
     })
-});
+}
