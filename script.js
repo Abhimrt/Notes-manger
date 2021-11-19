@@ -1,13 +1,40 @@
-let addbtn =document.getElementById("addbtn")
-addbtn.addEventListener("click",() =>{
+let addbtn = document.getElementById("addbtn")
+shownotes();
+addbtn.addEventListener("click", () => {
     let notes = localStorage.getItem("material")
-    let txar=document.getElementById("txtArea");
-    if(notes == null){
-        notesarr=[];
+    let txar = document.getElementById("txtArea");
+    if (notes == null) {
+        notesarr = [];
     }
-    else{
-        notesarr=JSON.parse(notes);
+    else {
+        notesarr = JSON.parse(notes);
     }
-    notesarr.push(txar.value);
-    localStorage.setItem("material",JSON.stringify(notesarr));
+    if(txar.value!="")
+        notesarr.push(txar.value);
+    localStorage.setItem("material", JSON.stringify(notesarr));
+    txar.value='';
+    shownotes();
 })
+function shownotes() {
+    let writedown = document.getElementById("write");
+    writedown.innerHTML="";
+    let notes = localStorage.getItem("material")
+    if (notes == null) {
+        notesarr = [];
+    }
+    else {
+        notesarr = JSON.parse(notes);
+    }
+    console.log(notesarr);
+    notesarr.forEach((e, index) => {
+        writedown.innerHTML += `
+            <div class="noteCard my-2 mx-2 card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title cb">Note ${index + 1}</h5>
+                    <p class="card-text cb1">${e}</p>
+                    <button id="${index}"onclick="deleteNote(this.id)" class="btn btn-danger">Delete Note</button>
+                </div>
+            </div>
+        `
+    });
+}
