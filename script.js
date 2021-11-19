@@ -9,15 +9,15 @@ addbtn.addEventListener("click", () => {
     else {
         notesarr = JSON.parse(notes);
     }
-    if(txar.value!="")
+    if (txar.value != "")
         notesarr.push(txar.value);
     localStorage.setItem("material", JSON.stringify(notesarr));
-    txar.value='';
+    txar.value = '';
     shownotes();
 })
 function shownotes() {
     let writedown = document.getElementById("write");
-    writedown.innerHTML="";
+    writedown.innerHTML = "";
     let notes = localStorage.getItem("material")
     if (notes == null) {
         notesarr = [];
@@ -25,7 +25,6 @@ function shownotes() {
     else {
         notesarr = JSON.parse(notes);
     }
-    console.log(notesarr);
     notesarr.forEach((e, index) => {
         writedown.innerHTML += `
             <div class="noteCard my-2 mx-2 card" style="width: 18rem;">
@@ -38,8 +37,23 @@ function shownotes() {
         `
     });
 }
- function deletecard(index){
-     notesarr.splice(index,index+1);
-     localStorage.setItem('material',JSON.stringify(notesarr));
-     shownotes();
+function deletecard(index) {
+    notesarr.splice(index, index + 1);
+    localStorage.setItem('material', JSON.stringify(notesarr));
+    shownotes();
 }
+
+let search =document.getElementById('search');
+search.addEventListener('input',()=>{
+    let data = document.querySelectorAll(".noteCard");
+    data.forEach((e)=>{
+        let element=e.getElementsByTagName('p')[0].innerText;
+            if(element.includes(search.value.toLowerCase())){
+                e.style.display="block"
+            }
+            else
+            {
+                e.style.display="none"
+            }
+    })
+});
