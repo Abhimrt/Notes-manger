@@ -1,5 +1,6 @@
 shownotes();
-impsecdisplay()
+impsecdisplay();
+important();
 // ================add element to local storage memory=================
 let addbtn = document.getElementById("addbtn")
 addbtn.addEventListener("click", () => {
@@ -37,7 +38,12 @@ function shownotes() {
         stararr = JSON.parse(star);
     }
     notesarr.forEach((e, index) => {
-        if (stararr.forEach((se) => { return se; }) == e) {
+        flag=0
+        stararr.forEach((se) => {
+             if(se==index)
+                flag++; 
+            });
+        if (flag != 0 ) {
             writedown.innerHTML += `
                     <div class="noteCard my-2 mx-2 card" style="width: 18rem;">
                         <div class="card-body">
@@ -63,6 +69,7 @@ function shownotes() {
                     </div>
                 `;
         }
+        important();
     });
 
 }
@@ -70,8 +77,9 @@ function shownotes() {
 
 
 // =================for important section============
-let data = document.querySelectorAll(".noteCard");
-data.forEach((e, index) => {
+function important()
+{let data = document.querySelectorAll(".noteCard");
+data.forEach((e,index) => {
     let halfStar = e.getElementsByTagName("i")[0];
     let impMsg = e.getElementsByTagName("span")[0];
     halfStar.addEventListener("mouseenter", () => {
@@ -83,15 +91,23 @@ data.forEach((e, index) => {
     halfStar.addEventListener("click", () => {
         if (halfStar.classList[1] == "bi-star") {
             halfStar.className = 'bi bi-star-fill imp1';
-            impsecadd(index);
+            notesarr.forEach((ne,index)=>{
+                if(e.getElementsByTagName('p')[0].innerText==ne)
+                impsecadd(index);
+            })
         }
         else if (halfStar.classList[1] == "bi-star-fill") {
             halfStar.className = 'bi bi-star imp1';
-            impsecremove(index);
+            notesarr.forEach((ne,index)=>{
+                if(e.getElementsByTagName('p')[0].innerText==ne)
+                impsecremove(index);
+            })
 
         }
     })
 });
+// shownotes();
+}
 
 // =========to import stared card index no in the local storage of 'star'=====
 function impsecadd(index) {
@@ -146,7 +162,7 @@ function impsecremove(notodel) {
 
 // ===============this will delete the card =============
 function deletecard(notodel) {
-    notesarr.splice(notodel, notodel+1);
+    notesarr.splice(notodel,1);
     localStorage.setItem('material', JSON.stringify(notesarr));
     stararr.forEach((e, index) => {
         if (e == notodel)
