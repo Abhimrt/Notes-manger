@@ -1,9 +1,13 @@
 shownotes();
 impsecdisplay();
 important();
+
+
+
 // ================add element to local storage memory=================
+
 let addbtn = document.getElementById("addbtn")
-addbtn.addEventListener("click", () => {
+const on_addbtn = () => {
     let notes = localStorage.getItem("material")
     let txar = document.getElementById("txtArea");
     if (notes == null) {
@@ -17,6 +21,14 @@ addbtn.addEventListener("click", () => {
     localStorage.setItem("material", JSON.stringify(notesarr));
     txar.value = '';
     shownotes();
+}
+addbtn.addEventListener("click", on_addbtn)
+
+
+document.addEventListener("keypress",(e)=>{
+    if(e.key==="Enter"){
+        on_addbtn();
+    }
 })
 
 // ===========display the cards on DOM============== 
