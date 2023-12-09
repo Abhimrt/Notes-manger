@@ -3,7 +3,8 @@
     font-family: 'Architects Daughter', cursive;
     color: white;
 }
-
+body{
+    min-height:100vh;}
 .cb {
     color: black;
 }
@@ -51,6 +52,8 @@
     place-items: center;
     margin-top: 6rem;
     padding: 1rem;
+    position:absolute;
+    bottom:0;
 }
 
 @media (max-width:800px) {
